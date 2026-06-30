@@ -3,25 +3,718 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message</title>
+    <meta name="description" content="Arc & Axis Mfg — Precision laser cutting, welding, and custom metal fabrication. Flat parts, brackets, and production runs for businesses.">
+    <title>Arc & Axis Mfg | Precision Manufacturing</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            padding: 0;
         }
-        h1 {
-            font-size: 8vw;
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+            color: #1e1e1e;
+            background: #fff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ============================================
+           UTILITY
+           ============================================ */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #2563eb;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #111;
+        }
+        .nav-logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: #555;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* hamburger */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            padding: 100px 0 80px;
+            background: #fafbfc;
+            border-bottom: 1px solid #eef0f2;
+        }
+
+        .hero .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 3.8rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 700px;
+            color: #0a0a0a;
+        }
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 520px;
+            margin: 24px 0 36px;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           ABOUT
+           ============================================ */
+        .about {
+            padding: 100px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 18px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .stat-card {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 28px 24px;
             text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2563eb;
+            letter-spacing: -0.02em;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           SERVICES
+           ============================================ */
+        .services {
+            padding: 100px 0;
+            background: #f8fafc;
+            border-top: 1px solid #eef0f2;
+            border-bottom: 1px solid #eef0f2;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 36px 28px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: #eff6ff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+        .service-card p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .service-card .coming-soon {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #2563eb;
+            background: #eff6ff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            align-self: flex-start;
+        }
+
+        /* ============================================
+           CONTACT
+           ============================================ */
+        .contact {
+            padding: 100px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 64px;
+            margin-top: 40px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .contact-info > p {
+            color: #555;
+            margin-bottom: 28px;
+            font-size: 0.95rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .contact-detail-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: #eff6ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .contact-detail-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 2px;
+        }
+        .contact-detail-value {
+            font-size: 0.95rem;
+            color: #222;
+            font-weight: 500;
+        }
+
+        /* form */
+        .contact-form {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 36px;
+        }
+
+        .contact-form h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
             color: #333;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #fff;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-note {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 12px;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: #111;
+            color: #999;
+            padding: 32px 0;
+            font-size: 0.85rem;
+        }
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer a {
+            color: #ccc;
+            transition: color 0.2s;
+        }
+        .footer a:hover {
+            color: #fff;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 860px) {
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero {
+                padding: 60px 0 50px;
+            }
+
+            .about,
+            .services,
+            .contact {
+                padding: 64px 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                gap: 0;
+                border-bottom: 1px solid #e5e7eb;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                display: block;
+                padding: 16px 24px;
+                border-top: 1px solid #f0f0f0;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer .container {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>under construction</h1>
+
+<!-- ============================================
+     NAV
+     ============================================ -->
+<nav class="nav">
+    <div class="container">
+        <a href="#" class="nav-logo">Arc <span>&</span> Axis <span>Mfg</span></a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="hero">
+    <div class="container">
+        <h1>Precision parts.<br>No <span>nonsense</span>.</h1>
+        <p>Arc &amp; Axis Mfg cuts and welds flat metal parts for companies that need brackets, plates, and production pieces — sharp, fast, and on spec.</p>
+        <a href="#contact" class="btn btn-primary">Get a quote</a>
+    </div>
+</section>
+
+<!-- ============================================
+     ABOUT
+     ============================================ -->
+<section class="about" id="about">
+    <div class="container">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">We make metal<br>do what you need.</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Arc &amp; Axis Mfg is a lean manufacturing shop built around one idea: <strong>get parts out the door, right the first time</strong>. We started with a laser and a welder, and we&rsquo;ve been turning flat stock into finished pieces ever since.</p>
+                <p>We work with small and mid-size companies that need consistent, clean parts — whether it&rsquo;s a one-off prototype bracket or a production run of 500 plates. No minimums, no attitude, no surprises.</p>
+                <p>Based in the U.S., shipping wherever you need.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <div class="stat-number">Laser</div>
+                    <div class="stat-label">Precision flat cutting — brackets, plates, gussets, panels</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Weld</div>
+                    <div class="stat-label">Clean MIG/TIG joining for assemblies and structures</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Small Batch</div>
+                    <div class="stat-label">No minimums — one piece or a thousand</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Quick Turn</div>
+                    <div class="stat-label">Days, not weeks. We move fast.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     SERVICES
+     ============================================ -->
+<section class="services" id="services">
+    <div class="container">
+        <span class="section-label">Services</span>
+        <h2 class="section-title">What we bring to the table.</h2>
+        <div class="services-grid">
+
+            <div class="service-card">
+                <div class="service-icon">🔵</div>
+                <h3>Laser Cutting</h3>
+                <p>Flat parts cut from steel, stainless, and aluminum. Brackets, mounting plates, gussets, flanges, panels, and custom shapes. Tight tolerances, clean edges, ready to weld or ship.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🟠</div>
+                <h3>Welding &amp; Fabrication</h3>
+                <p>MIG and TIG welding for assemblies, frames, and structural components. We join what the laser cuts — finished pieces, not just flat stock.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⚪</div>
+                <h3>CNC Machining</h3>
+                <p>Multi-axis machining for parts that need more than a flat profile. Tapped holes, counterbores, 3D contours — coming as we expand the shop floor.</p>
+                <span class="coming-soon">Coming Soon</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     CONTACT
+     ============================================ -->
+<section class="contact" id="contact">
+    <div class="container">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">Let&rsquo;s build something.</h2>
+        <div class="contact-grid">
+
+            <div class="contact-info">
+                <h3>Reach us directly</h3>
+                <p>Have a drawing or a question? Send it over. We&rsquo;ll get back to you within a business day.</p>
+
+                <div class="contact-detail">
+                    <div class="contact-detail-icon">📧</div>
+                    <div>
+                        <div class="contact-detail-label">Email</div>
+                        <!-- TODO: replace with real email -->
+                        <div class="contact-detail-value">hello@arcnaxismfg.com</div>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="contact-detail-icon">📞</div>
+                    <div>
+                        <div class="contact-detail-label">Phone</div>
+                        <!-- TODO: replace with real phone -->
+                        <div class="contact-detail-value">(555) 123-4567</div>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="contact-detail-icon">📍</div>
+                    <div>
+                        <div class="contact-detail-label">Location</div>
+                        <!-- TODO: replace with real city/state -->
+                        <div class="contact-detail-value">Midwest, USA</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+            CONTACT FORM — FORMSPREE SETUP:
+            1. Go to https://formspree.io and create a free account
+            2. Create a new form, copy your unique endpoint URL
+            3. Replace the `action` URL below with yours
+            4. The form will forward submissions to the email you registered with
+            Free tier: 50 submissions/month. No server needed.
+            -->
+            <form class="contact-form" action="https://formspree.io/f/xxxxxxxx" method="POST">
+                <h3>Send a message</h3>
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Quote request, question, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your project — material, quantity, dimensions, or attach a drawing link." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send message</button>
+
+                <p class="form-note">Submissions go straight to our inbox. We reply within one business day.</p>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+    <div class="container">
+        <span>&copy; 2026 Arc &amp; Axis Mfg. All rights reserved.</span>
+        <a href="#">Back to top ↑</a>
+    </div>
+</footer>
+
+<!-- ============================================
+     MOBILE NAV TOGGLE
+     ============================================ -->
+<script>
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+
+    toggle.addEventListener('click', () => {
+        links.classList.toggle('active');
+    });
+
+    // close mobile nav when a link is clicked
+    links.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            links.classList.remove('active');
+        });
+    });
+</script>
+
 </body>
 </html>
