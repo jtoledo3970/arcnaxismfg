@@ -108,10 +108,21 @@
         }
 
         .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 1.25rem;
             font-weight: 800;
             letter-spacing: -0.02em;
             color: #111;
+        }
+        .nav-logo img {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 4px;
         }
         .nav-logo span {
             color: #2563eb;
@@ -156,9 +167,9 @@
            HERO
            ============================================ */
         .hero {
-            padding: 100px 0 80px;
-            background: #fafbfc;
-            border-bottom: 1px solid #eef0f2;
+            padding: 80px 0 80px;
+            background: #111;
+            border-bottom: 1px solid #222;
         }
 
         .hero .container {
@@ -167,21 +178,26 @@
             align-items: flex-start;
         }
 
+        .hero-logo {
+            max-width: 200px;
+            margin-bottom: 28px;
+        }
+
         .hero h1 {
             font-size: clamp(2.5rem, 6vw, 3.8rem);
             font-weight: 900;
             line-height: 1.05;
             letter-spacing: -0.03em;
             max-width: 700px;
-            color: #0a0a0a;
+            color: #fff;
         }
         .hero h1 span {
-            color: #2563eb;
+            color: #60a5fa;
         }
 
         .hero p {
             font-size: 1.2rem;
-            color: #555;
+            color: #aaa;
             max-width: 520px;
             margin: 24px 0 36px;
             line-height: 1.6;
@@ -516,7 +532,7 @@
      ============================================ -->
 <nav class="nav">
     <div class="container">
-        <a href="#" class="nav-logo">Arc <span>&</span> Axis <span>Mfg</span></a>
+        <a href="#" class="nav-logo"><img src="logo.png" alt="Arc & Axis Mfg logo" width="36" height="36">Arc <span>&</span> Axis <span>Mfg</span></a>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
             <span></span><span></span><span></span>
         </button>
@@ -533,6 +549,7 @@
      ============================================ -->
 <section class="hero">
     <div class="container">
+        <img src="logo.png" alt="Arc & Axis Mfg" class="hero-logo">
         <h1>Precision parts.<br>No <span>nonsense</span>.</h1>
         <p>Arc &amp; Axis Mfg cuts and welds flat metal parts for companies that need brackets, plates, and production pieces — sharp, fast, and on spec.</p>
         <a href="#contact" class="btn btn-primary">Get a quote</a>
